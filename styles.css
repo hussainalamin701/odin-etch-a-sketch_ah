@@ -16,7 +16,7 @@ body{
 }
 
 h1{
-    margin: 5%;
+    margin: 2.5%;
     font-size: 2.8rem;
 }
 
@@ -30,13 +30,21 @@ h1{
     align-items: center;
 }
 
+.main-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-bar{
+    display: flex;
+    flex-direction: column;
+}
+
 .element{
     background-color: white;
     border: 0.1px solid gray;
-}
-
-.element:hover{
-    background-color: rgba(156, 154, 154, 0);
 }
 
 .clicked{
@@ -50,4 +58,15 @@ h1{
 
     display: grid;
     border: 2px rgb(255, 255, 255) solid;
+}
+
+#clear-button, #eraser-button{
+    margin: 10px;
+    margin-right: 50px;
+    padding: 10px;
+    border-radius: 10%;
+    box-shadow:  
+    0 0 6px 3px #fff,  /* inner white */
+    0 0 6px 6px rgb(251, 255, 0) /* middle magenta */
+
 }

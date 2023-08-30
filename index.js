@@ -1,6 +1,8 @@
 const canvas = document.querySelector('#canvas');
 const elem = document.querySelectorAll('.element');
 
+const clear = document.getElementById('clear-button');
+
 let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
@@ -24,12 +26,20 @@ function createGrid(size){
     }
 }
 
+function clearGrid(){
+    const elem = document.querySelectorAll('.element');
+    elem.forEach((ele) =>{
+        ele.classList.remove('clicked');
+    });
+}
+
 function colorChange(e){
     if(e.type === 'mouseover' && !mouseDown)return;
     else{
-        this.style.backgroundColor = 'black';
+        this.classList.add('clicked');
     }
 }
 
 let canvasSize = 16;
 createGrid(canvasSize);
+clear.onclick = () => clearGrid();
