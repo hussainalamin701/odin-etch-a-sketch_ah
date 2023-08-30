@@ -1,0 +1,49 @@
+*, *::after, *::before{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h1{
+    margin: 5%;
+    font-size: 2.8rem;
+}
+
+.main{
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(192, 185, 185);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.element{
+    background-color: white;
+    border: 0.1px solid gray;
+}
+
+.element:hover{
+    background-color: rgba(156, 154, 154, 0);
+}
+
+#canvas{
+    width: 500px;
+    height: 500px;
+    background-color: rgb(229, 219, 219);
+
+    display: grid;
+    border: 2px rgb(255, 255, 255) solid;
+}
