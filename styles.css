@@ -39,6 +39,10 @@ h1{
     background-color: rgba(156, 154, 154, 0);
 }
 
+.clicked{
+    background-color: black;
+}
+
 #canvas{
     width: 500px;
     height: 500px;
