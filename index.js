@@ -74,7 +74,12 @@ function eraseCanvasElement(){
     eraser.classList.toggle('button-active');
     rainbow.classList.remove('button-active');
     color = 'eraser';
-    console.log(eraser.className);
+
+    if(eraser.classList.contains('button-active')){
+        color = 'eraser';
+    }else{
+        color = 'black';
+    }
 }
 
 function sizeChange(){
@@ -85,8 +90,12 @@ function sizeChange(){
 function rainbowColor(){  
     rainbow.classList.toggle('button-active');
     eraser.classList.remove('button-active');
-    color = 'rainbow';
-    console.log(rainbow.className);
+
+    if(rainbow.classList.contains('button-active')){
+        color = 'rainbow';
+    }else{
+        color = 'black';
+    }
 }
 
 
