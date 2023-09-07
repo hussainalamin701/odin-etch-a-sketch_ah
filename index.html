@@ -12,14 +12,16 @@
         <h1>Etch A Sketch</h1>
         <div class="main-section">
             <div class="side-bar">
+                <button id="color-button">Color</button>
                 <button id="clear-button">Clear</button>
                 <button id="eraser-button">Erase</button>
                 <button id="rainbow-button">Rainbow</button>
                 <button id="change-size-button">Change Size</button>
 
-                <div class="color-picker"></div>
-                <div id="color-indicator" class="color-indicator"></div>
-                <div id="color-picker"></div>
+                <div class="container">
+                    <input type="color" value="#43da86" id="color-picker">
+                    <!--<label id="color-text" for="color-picker">Current Color</label>-->
+                </div>
             </div>
 
             <div id="canvas"></div>

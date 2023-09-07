@@ -1,16 +1,21 @@
+let DEFAULT_COLOR = '#43da86';
+let DEFAULT_MODE = 'color';
+
 const canvas = document.querySelector('#canvas');
 const elem = document.querySelectorAll('.element');
 
+const COLOR_PICKER = document.getElementById('color-picker');
 const clear = document.getElementById('clear-button');
 const eraser = document.getElementById('eraser-button');
 const change_size = document.getElementById('change-size-button');
 const rainbow = document.getElementById('rainbow-button');
+const color_ = document.getElementById('color-button');
 
 let DEFAULT_SIZE = 16;
-let color = 'black';
-let mouseDown = false;
-let colorIndicator = document.getElementById('color-indicator');
+let color = DEFAULT_COLOR;
+let currentMode = DEFAULT_MODE;
 
+let mouseDown = false;
 document.body.onmousedown = () => (mouseDown = true);
 document.body.onmouseup = () => (mouseDown = false);
 
@@ -21,6 +26,15 @@ function clearGridHelper(){
 
 function updateSize(size){
     DEFAULT_SIZE = size;
+}
+
+function setCurrentColor(newColor){
+    color = newColor;
+}
+
+function setMode(newMode){
+    activateButton(newMode);
+    currentMode = newMode;
 }
 
 function createGrid(DEFAULT_SIZE){
@@ -45,7 +59,7 @@ function clearGrid(){
         ele.style.backgroundColor = 'white';
     });
     rainbow.classList.remove('button-active');
-    color = 'black';
+    this.style.backgroundColor = color;
 }
 
 function changeSize(){
@@ -56,52 +70,47 @@ function changeSize(){
 }
 
 function colorChange(e){
-    if(e.type == 'mouseover' && !mouseDown)return;
-
-    if(color === 'rainbow' && mouseDown){
-        this.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`
-
-    }else if(color === 'eraser' && mouseDown){
-        this.style.backgroundColor = 'white';
-        
-    }else{
-        this.style.backgroundColor = 'black'
-
+    if(e.type === 'mouseover' && !mouseDown)return;
+    if(currentMode === 'rainbow'){
+        e.target.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    }else if(currentMode === 'eraser'){
+        e.target.style.backgroundColor = '#fefefe';
+    }else if(currentMode === 'color'){
+        e.target.style.backgroundColor = color;
     }
 }
 
-function eraseCanvasElement(){
-    eraser.classList.toggle('button-active');
-    rainbow.classList.remove('button-active');
-    color = 'eraser';
-
-    if(eraser.classList.contains('button-active')){
-        color = 'eraser';
-    }else{
-        color = 'black';
+function activateButton(newMode) {
+    if (currentMode === 'rainbow') {
+      rainbow.classList.remove('button-active')
+    } else if(currentMode === 'color'){
+        color_.classList.remove('button-active')
+    } else if(newMode === 'eraser'){
+        eraser.classList.remove('button-active')
     }
-}
 
-function sizeChange(){
-    this.gridTemplateColumns = '2fr';
-    this.gridTemplateRows = '2fr';
-}
-
-function rainbowColor(){  
-    rainbow.classList.toggle('button-active');
-    eraser.classList.remove('button-active');
-
-    if(rainbow.classList.contains('button-active')){
-        color = 'rainbow';
-    }else{
-        color = 'black';
+    if (newMode === 'rainbow') {
+      rainbow.classList.add('button-active')
+    } else if(newMode === 'color'){
+        color_.classList.add('button-active')
+        eraser.classList.remove('button-active')
+    } else if(newMode === 'eraser'){
+        eraser.classList.add('button-active')
+        color_.classList.remove('button-active')
     }
 }
 
 
 createGrid(DEFAULT_SIZE);
 
+COLOR_PICKER.oninput = (e) => setCurrentColor(e.target.value);
 clear.onclick = () => clearGrid();
 change_size.onclick = () => changeSize();
-eraser.onclick = () => eraseCanvasElement();
-rainbow.onclick = () => rainbowColor();
+
+color_.onclick = () => setMode('color');
+eraser.onclick = () => setMode('eraser');
+rainbow.onclick = () => setMode('rainbow');
+
+window.onload = () => {
+    activateButton(DEFAULT_MODE)
+  }

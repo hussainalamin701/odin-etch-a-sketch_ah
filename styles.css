@@ -50,10 +50,11 @@ h1{
     background-color: white;
     border: 0.1px solid gray;
     cursor: pointer;
+    user-select: none;
 }
 
 .element:hover{
-    background-color: black;
+    background-color: gray;
 }
 
 .clicked{
@@ -62,34 +63,6 @@ h1{
 
 .eraser{
     background-color: white;
-}
-
-.color-bar{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.color-picker{
-    position: relative;
-}
-
-.color-indicator{
-    display: inline-block;
-    width: 150px;
-    height: 150px;
-    background-color: #fff;
-    border-radius: 20px;
-    margin: 16px;
-    vertical-align: middle;
-    align-self:flex-start;
-}
-
-#color-picker{
-    display: inline-block;
-    vertical-align: middle;
-    
 }
 
 .button-active{
@@ -105,7 +78,9 @@ h1{
     border: 1px rgb(255, 255, 255) solid;
 }
 
-#clear-button, #eraser-button, #change-size-button, #rainbow-button{
+#clear-button, #eraser-button, #change-size-button, #rainbow-button, #color-button{
+    display: flex;
+    justify-content: center;
     margin: 10px;
     margin-right: 50px;
     padding: 10px;
@@ -115,3 +90,35 @@ h1{
     0 0 6px 3px rgb(251, 255, 0) /* middle magenta */
 
 }
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 40px;
+}
+
+#color-picker{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+
+    padding: 0%;
+    width: 100px;
+    height: 100px;
+    border: none;
+    cursor: pointer;
+}
+
+#color-picker::-webkit-color-swatch{
+    border-radius: 50%;
+    border: 1px solid whitesmoke;
+}
+
+#color-picker::-moz-color-swatch{
+    border-radius: 50%;
+    border: 2px solid whitesmoke;
+}
+
+
